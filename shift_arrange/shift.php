@@ -3,6 +3,8 @@ session_start();
 header("Content-type: text/html; charset=utf-8");
 require_once("../../db_pj_sys_conf.inc");
 require_once '../medoo/Medoo.php';
+//
+//if(isset())
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,7 +48,7 @@ require_once '../medoo/Medoo.php';
 
 		  <!-- 填班的表格 -->
 		  <!-- 如果复选框搞不定，可以换成下拉表格 -->
-		<form>
+		<form action="get_shift.php">
 		<table class="table table-hover  table-responsive">
   		<caption>文印排班表</caption>
 
@@ -114,7 +116,6 @@ require_once '../medoo/Medoo.php';
     </div><!--/row-->
 
       <hr>
-
       <footer>
         <p>&copy; wjp 2018</p>
       </footer>

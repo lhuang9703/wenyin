@@ -1,4 +1,4 @@
-
+<!--  选班部分的菜单 -->
 <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">

@@ -36,18 +36,11 @@ require_once '../medoo/Medoo.php';
       </script>
 
 
-        <div class="span9">
-          <div class="hero-unit">
-            <h1>排班页面</h1>
-            <p>请在13月25点之前完成填班工作</p>
-            <!-- <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p> -->
-          </div> 
-
 //管理员工信息：
 //只有这个页面和管理员页面是有管理员权限的
-员工添加
+员工添加（批量添加，从excel文件中导入，初始密码为后四位，数据库里存储密文）
 员工删除
-管理员权限转让
+员工权限修改，（管理员权限转让， 1，2，3之间转换）
 群通知
 
 添加修改主页的板块
