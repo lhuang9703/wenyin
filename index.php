@@ -1,7 +1,7 @@
 <?php 
 session_start(); 
 header("Content-type: text/html; charset=utf-8");
-require_once("db_pj_sys_conf.inc");
+require_once("../db_pj_sys_conf.inc");
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +65,7 @@ require_once("db_pj_sys_conf.inc");
 		<div class="jumbotron">
 				<h1>hello world!</h1>
 				<p class="lead">文印的一些简介，简介，简介，简介~~~</p>
-				<a class="btn btn-large btn-success" href="/login&register/register.php">注册来预约打印吧</a>
+				<a class="btn btn-large btn-success" href="/Order/orders.php">欢迎使用预约打印</a>
 		</div>
 	<hr>
 

@@ -20,32 +20,25 @@
 	</script>
 
     <div class="container-fluid">
-      <div class="row-fluid">
+    <div class="row-fluid">
 
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li ><a href="shift.php">选班</a></li>
-              <li class="active" ><a href="table.php">当班表</a></li>
-              <li ><a href="in_out.php">收班出班</a></li>
-              <li><a href="manage.php">管理员</a></li>
-              <li><a href="selfinfo.php">个人信息</a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+    <?php include './menu_shift.php'; ?>
+    <script>
+      var p = document.getElementById('table');
+      p.setAttribute('class', 'active'); 
+    </script>
 
-        <div class="span9">
-          <div class="hero-unit">
+    <div class="span9">
+        <div class="hero-unit">
             <h1>当前当班表</h1>
             <p>收班出版板块</p>
             <!-- <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p> -->
-          </div> 
-    <p>往期当班表</p>
-      <hr>
-
-      <footer>
-        <p>&copy; wjp 2018</p>
-      </footer>
+        </div> 
+        <p>往期当班表</p>
+        <hr>
+        <footer>
+          <p>&copy; wjp 2018</p>
+        </footer>
 
     </div><!--/.fluid-container-->
 

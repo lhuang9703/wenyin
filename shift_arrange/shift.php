@@ -1,7 +1,7 @@
 <?php 
 session_start(); 
 header("Content-type: text/html; charset=utf-8");
-require_once("../db_pj_sys_conf.inc");
+require_once("../../db_pj_sys_conf.inc");
 require_once '../medoo/Medoo.php';
 ?>
 <!DOCTYPE html>
@@ -29,17 +29,11 @@ require_once '../medoo/Medoo.php';
     <div class="container-fluid">
       <div class="row-fluid">
 
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="active"><a href="shift.php">选班</a></li>
-			  <li ><a href="table.php">当班表</a></li>
-              <li><a href="in_out.php">收班出班</a></li>
-              <li><a href="manage.php">管理员</a></li>
-              <li><a href="selfinfo.php">个人信息</a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+	<?php include './menu_shift.php'; ?>
+	<script>
+		var p = document.getElementById('shift');
+		p.setAttribute('class', 'active'); 
+	</script>
 
         <div class="span9">
           <div class="hero-unit">

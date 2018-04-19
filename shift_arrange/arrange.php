@@ -1,7 +1,7 @@
 <?php 
 session_start(); 
 header("Content-type: text/html; charset=utf-8");
-require_once("../db_pj_sys_conf.inc");
+require_once("../../db_pj_sys_conf.inc");
 require_once '../medoo/Medoo.php';
 ?>
 <!DOCTYPE html>
@@ -29,17 +29,12 @@ require_once '../medoo/Medoo.php';
     <div class="container-fluid">
       <div class="row-fluid">
 
-      <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li ><a href="shift.php">选班</a></li>
-              <li ><a href="table.php">当班表</a></li>
-              <li><a href="in_out.php">收班出班</a></li>
-              <li class="active"><a href="manage.php">管理员</a></li>
-              <li><a href="selfinfo.php">个人信息</a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+      <?php include './menu_shift.php'; ?>
+      <script>
+        var p = document.getElementById('arrange');
+        p.setAttribute('class', 'active'); 
+      </script>
+
 
         <div class="span9">
           <div class="hero-unit">
@@ -51,13 +46,6 @@ require_once '../medoo/Medoo.php';
        <p>排班表 </p>  --> 显示已经有几个人填写，每个时间段都有谁可以当
        <p>列表中，每个排班都可以停止收集，开始排班， 修改排班结果，使用排班结果</p>
             排班-->新建，停止，修改
-
-员工添加
-员工删除
-管理员权限转让
-群通知
-
-添加修改主页的板块
       <hr>
 
       <footer>
