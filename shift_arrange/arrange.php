@@ -8,7 +8,6 @@ require_once '../medoo/Medoo.php';
 <html>
 <head>
 	<title>选班排班系统</title>
-	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"> </script>
 	<?php include '../format/head.php'; ?>
 	<style>
 			body {
@@ -45,10 +44,6 @@ require_once '../medoo/Medoo.php';
         按钮：使用此排班
         
         <hr>
-
-      <footer>
-        <p>&copy; wjp 2018</p>
-      </footer>
 
     </div><!--/.fluid-container-->
 

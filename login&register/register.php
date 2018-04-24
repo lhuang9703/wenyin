@@ -35,10 +35,8 @@
                 padding: 7px 9px;
             }
 	</style>
-
 </head>
     <body>
-        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"> </script>
          <?php include "../format/menu.php"; ?>
          <script>
             var p = document.getElementById('login_page');
@@ -46,7 +44,7 @@
         </script>
 
         <div class="container">
-            <form class="form-signin" action="register_action.php" method="post">
+            <form class="form-signin"  method="post">
                 <h2 class="form-signin-heading">Register</h2>
                 <input type="text" class="input-block-level" placeholder="Email address">
                 <input type="password" class="input-block-level" placeholder="Password">
@@ -54,10 +52,10 @@
 
                 <input type="text" class="input-block-level" placeholder="请输入验证码">
 
-                <input type="button" class="btn btn-large " onclick="location.href='get_code.php';" value="获取验证码"/>
+                <input type="button" class="btn btn-large"  value="获取验证码"/>
+                <!-- onclick="location.href='get_code.php';" -->
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button class="btn btn-large btn-primary" type="submit">Submit</button>
-                
             </form>
         </div> <!-- /container -->
     </body>

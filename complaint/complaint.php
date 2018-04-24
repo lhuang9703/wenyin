@@ -8,9 +8,8 @@
 <html>
 <head><meta charset="UTF-8">
     <title>学生文印中心投诉系统</title>
-    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"> </script>
-    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
     <?php include '../format/head.php'; ?>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
     <style>
     body {
         padding-top: 60px;

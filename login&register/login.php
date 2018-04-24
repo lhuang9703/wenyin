@@ -4,12 +4,10 @@ header("Content-type: text/html; charset=utf-8");
 require_once("../../db_pj_sys_conf.inc");
 require_once '../medoo/Medoo.php';
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>登录</title>
-    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"> </script>
     <?php  include "../format/head.php"?>
 	<style>
             body {
@@ -79,7 +77,6 @@ require_once '../medoo/Medoo.php';
         ]);
 
     //获取表单内容
-   
     if(isset($_POST['userid'])){
         $id=   $_POST['userid'];
         $password = $_POST['password'];

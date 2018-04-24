@@ -1,8 +1,6 @@
 <html>
 <head>
 	<title>选班排班系统</title>
-	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"> </script>
-
 	<?php include '../format/head.php'; ?>
 	<style>
 			body {
@@ -35,10 +33,6 @@
         </div> 
         <p>往期当班表</p>
         <hr>
-        <footer>
-          <p>&copy; wjp 2018</p>
-        </footer>
-
     </div><!--/.fluid-container-->
 
 </body>

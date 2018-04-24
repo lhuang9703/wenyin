@@ -8,9 +8,8 @@ require_once '../medoo/Medoo.php';
 <html>
 <head>
 	<title>选班排班系统</title>
-	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"> </script>
-
 	<?php include '../format/head.php'; ?>
+  
 	<style>
 			body {
 			  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
