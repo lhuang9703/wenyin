@@ -30,7 +30,7 @@
 		
 		while($row = $result->fetch_assoc()) {
 			echo "<tr>";
-			echo "<td>" . $row["local_time"] . "</td>";
+			echo "<td>" . $row["time_local"] . "</td>";
 			echo "<td>" . $row["shift"] . "</td>";
 			echo "<td>" . $row["rate"] . "</td>";
 			echo "<td>" . $row["comp"] . "</td>";

@@ -11,18 +11,27 @@
             'username' => $DBUSER,
             'password' => $DBPWD,
         ]);
- 
-    //做一个循环，判断1-28是否出现，对某个人形成一个json文件；
-    //数据表中，以每个人为主键，28个字符表示选班结果；
-    //管理员新建排班时，会先将存储选班表的数据库清空；
-        
-    // $shift2=$_POST["shift2"];
-    // $rate=$_POST["rate"];
-    // $complaint=$_POST["complaint"] ;
+    
+    echo $_POST["id"];
+    echo $_POST["shift1"];
+    echo $_POST["shift2"];
+    //echo "alalal";
+    //删除上次提交的选班数据，插入新选班数据
+    if(isset($_POST["id"])){
+        $database->delete("select_shift", [
+                "wno" => $_POST["id"]
+        ]);
 
-    // $database->insert('comp', [
-    //     'shift' => $shift,
-    //     'rate' => $rate ,
-    //     'comp' => $complaint,
-    // ]);
+        $shifts=array();
+        for($i=1; $i<=28; $i++){
+            $str="shift";
+            $str=$str.(string)$i;
+            if(isset($_POST[$str])){
+                    $database->insert('select_shift', [
+                        'wno' => $_POST["id"],
+                        'sno' => $i ,
+                    ]);
+            }
+        }
+    }
 ?>

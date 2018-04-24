@@ -13,7 +13,6 @@ require_once '../medoo/Medoo.php';
 	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"> </script>
 
 	<?php include '../format/head.php'; ?>
-	<link href="shift.css" rel="stylesheet" media="screen">
 	<style>
 			body {
 			  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -48,7 +47,7 @@ require_once '../medoo/Medoo.php';
 
 		  <!-- 填班的表格 -->
 		  <!-- 如果复选框搞不定，可以换成下拉表格 -->
-		<form action="get_shift.php">
+		<form id="tf">
 		<table class="table table-hover  table-responsive">
   		<caption>文印排班表</caption>
 
@@ -107,7 +106,7 @@ require_once '../medoo/Medoo.php';
 				</tr>
 			</tbody>
 		</table>
-		<button type="submit">提交</button> &nbsp &nbsp
+		<input type="button" value="提交" onclick="upload();"/> &nbsp &nbsp
 		<button type="reset">重置</button>
 		</form>
 		</div><!--/span-->
@@ -123,4 +122,32 @@ require_once '../medoo/Medoo.php';
     </div><!--/.fluid-container-->
 
 </body>
+
+<script>
+//提交表单文件的函数
+        function upload(){
+            var form = new FormData(document.getElementById("tf"));
+			var id="<?php echo $_SESSION["id"]; ?>";
+			var password="<?php echo $_SESSION["password"]; ?>";
+
+			form.append("id", id);
+			form.append("password", password);
+
+            $.ajax({
+                url:"get_shift.php",
+                type:"post",
+                data:form,
+                processData:false,
+                contentType:false,
+                success:function(data){
+                    console.log("over..");
+					alert("提交成功！");
+                },
+                error:function(e){
+                    alert("提交失败！");
+                }
+            });
+			
+        }
+</script>
 </html>

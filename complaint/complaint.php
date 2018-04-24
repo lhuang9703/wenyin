@@ -50,7 +50,7 @@
         
         //向服务器提交信息的函数
         function postdata(shift, rate, complaint){
-                var url = "http://118.89.101.128/complaint/getcomplaint.php";
+                var url = "./getcomplaint.php";
                 var params = {
                         "shift": shift,
                         "rate": rate,
