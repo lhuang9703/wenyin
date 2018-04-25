@@ -3,8 +3,13 @@ session_start();
 header("Content-type: text/html; charset=utf-8");
 require_once("../../db_pj_sys_conf.inc");
 require_once '../medoo/Medoo.php';
-//
-//if(isset())
+
+if(isset($_SESSION["id"])){
+	if((int)($_SESSION["privilege"])>2){
+		echo "<script language=javascript>alert('对不起，您没有权限！');location.href='../index.php';</script>";
+	}
+}else
+echo "<script language=javascript>alert('请先登录！');location.href='../login&register/login.php';</script>";
 ?>
 <!DOCTYPE html>
 <html>
@@ -140,8 +145,7 @@ require_once '../medoo/Medoo.php';
                 error:function(e){
                     alert("提交失败！");
                 }
-            });
-			
+            });	
         }
 </script>
 </html>

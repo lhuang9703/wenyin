@@ -14,7 +14,8 @@
 
 * 4.25增添：
 + python信息导入: readstaff.py
-+ 密码哈希存储: login.php
++ 密码哈希存储: 在login.php中 使用sha-256
 + php调用排班的可执行文件arrange 与主目录平行 (arrange.cpp为源文件); 
     - 这部分需要用php.ini修改权限
     - c++排班代码与arrange_shift.php用txt文件交互
++ 利用session配合权限控制

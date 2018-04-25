@@ -3,6 +3,14 @@ session_start();
 header("Content-type: text/html; charset=utf-8");
 require_once("../../db_pj_sys_conf.inc");
 require_once '../medoo/Medoo.php';
+
+if(isset($_SESSION["id"])){
+	if((int)($_SESSION["privilege"])>0){
+		echo "<script language=javascript>alert('对不起，您没有权限！');location.href='./shift.php';</script>";
+	}
+}else
+echo "<script language=javascript>alert('请先登录！');location.href='../login&register/login.php';</script>";
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,14 +42,12 @@ require_once '../medoo/Medoo.php';
       </script>
 
 
-//管理员工信息：
-//只有这个页面和管理员页面是有管理员权限的
-员工添加（批量添加，从excel文件中导入，初始密码为后四位，数据库里存储密文）
+<!-- //管理员工信息：
+员工添加 批量添加，从excel文件中导入，初始密码为后四位，数据库里存储密文）
 员工删除
-员工权限修改，（管理员权限转让， 1，2，3之间转换）
+员工权限修改，（管理员权限转让， 0,1，2，3之间转换）
 群通知
-
-添加修改主页的板块
+修改主页信息 -->
       <hr>
 
     </div><!--/.fluid-container-->

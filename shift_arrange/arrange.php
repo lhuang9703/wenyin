@@ -3,6 +3,12 @@ session_start();
 header("Content-type: text/html; charset=utf-8");
 require_once("../../db_pj_sys_conf.inc");
 require_once '../medoo/Medoo.php';
+if(isset($_SESSION["id"])){
+	if((int)($_SESSION["privilege"])>0){
+		echo "<script language=javascript>alert('对不起，您没有权限！');location.href='./shift.php';</script>";
+	}
+}else
+echo "<script language=javascript>alert('请先登录！');location.href='../login&register/login.php';</script>";
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,14 +42,6 @@ require_once '../medoo/Medoo.php';
             <!-- <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p> -->
           </div> 
     <button onclick="arrange();">排班</button>
-    <hr>
-        按钮：新建排班（给定一个排班id，标志每个排班，把id放在数据库中）；提交到php文件中，同时用js生成代码；
-
-        这里应该有排班表： 显示每个班上选的人数（下拉菜单，点击后，可以将某个人选中） 显示当前班的排班结果（内容，但可以取消）； 表头是： 有几个人已经填写；
-        按钮：自动排班
-        按钮：使用此排班
-        
-        <hr>
 
     </div><!--/.fluid-container-->
 
