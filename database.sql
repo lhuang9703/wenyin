@@ -21,8 +21,8 @@ wpassword char(64) not null,
 wname varchar(100) not null,
 wprivilege int not null,  -- 特权：管理员0，中高层：1 员工：2  仅保留编制：3
 wphone char(20),
-wbirthday datetime,
-wsex char(1),
+wbirthday datetime, -- 格式需要修改，改成data
+wsex char(1),    -- 需要修改，改成int，考虑第三性别
 Primary key(wno)
 )DEFAULT CHARSET=utf8;
 
@@ -42,8 +42,54 @@ Foreign key(sno)references shift(sno)
 )DEFAULT CHARSET=utf8;
 insert into select_shift(wno,sno)  values('1235',1),('1235',2);
 
+
+insert into select_shift(wno,sno)  values('15307130140',1),
+('15307130140',10),
+('15307130140',15),
+('15307130140',28),
+('16300720111',2),
+('16300720111',4),
+('16300720111',6),
+('16300720111',1),
+('16300720111',9),
+('16300720111',11),
+('15301030007',22),
+('15301030007',9),
+('15301030007',27),
+('15301030007',26),
+('15301030007',25),
+('15301030007',24),
+('15301030007',23),
+('15301030007',22),
+('15301030007',16),
+('15307130387',7),
+('15307130387',5),
+('15307130387',19),
+('15307130387',12),
+('15307130387',21),
+('15307130387',3),
+('15307130387',4),
+('15307080047',9),
+('15307080047',18),
+('15307080047',17),
+('15307080047',15),
+('15307080047',1),
+('15307080047',27),
+;
+
+
 -- 排好班的信息；
 create table arrange_shift(
+wno varchar(11) not null,
+sno int not null,  -- 从 1 到 28
+Primary key(wno, sno),
+Foreign key(wno)references wstaff(wno),
+Foreign key(sno)references shift(sno)
+)DEFAULT CHARSET=utf8;
+
+
+-- 正在使用的当班表；
+create table result_arrange_shift(
 wno varchar(11) not null,
 sno int not null,  -- 从 1 到 28
 Primary key(wno, sno),

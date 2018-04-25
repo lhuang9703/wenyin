@@ -10,6 +10,7 @@ if(isset($_SESSION["id"])){
 	}
 }else
 echo "<script language=javascript>alert('请先登录！');location.href='../login&register/login.php';</script>";
+
 ?>
 <!DOCTYPE html>
 <html>

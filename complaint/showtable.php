@@ -43,7 +43,7 @@
 <br>
 
 <hr>
-<h2 class="text-center">提交记录</h2>
+<h2 class="text-center">记录提交结果</h2>
 	<div class="table table-hover">
          <table>
             <thead>

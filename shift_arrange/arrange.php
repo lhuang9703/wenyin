@@ -9,6 +9,18 @@ if(isset($_SESSION["id"])){
 	}
 }else
 echo "<script language=javascript>alert('请先登录！');location.href='../login&register/login.php';</script>";
+
+$conn=mysqli_connect($DBHOST,$DBUSER,$DBPWD,$DBNAME);
+  //mysqli_select_db($conn,$DBNAME);
+$strb = '<div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  选班人员 <span class="caret"></span></button><ul class="dropdown-menu">';
+$stre = '</ul></div>';
+$get_staff = "select wstaff.wname from wstaff,select_shift where select_shift.sno = s and wstaff.wno = select_shift.wno;";
+$get_arrange_staff = "select wstaff.wname from wstaff,arrange_shift where arrange_shift.sno = s and wstaff.wno = arrange_shift.wno;";
+$zero = 0;
+$str = "暂无人选该班";
+$begin = 1;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,6 +39,7 @@ echo "<script language=javascript>alert('请先登录！');location.href='../log
 		var p = document.getElementById('select_class');
 		p.setAttribute('class', 'active'); 
 	</script>
+  
 <div class="container-fluid">
     <div class="row-fluid">
       <?php include './menu_shift.php'; ?>
@@ -36,15 +49,142 @@ echo "<script language=javascript>alert('请先登录！');location.href='../log
       </script>
 
     <div class="span9">
-          <div class="hero-unit">
-            <h1>排班页面</h1>
-            <p>请在13月25点之前完成填班工作</p>
-            <!-- <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p> -->
-          </div> 
-    <button onclick="arrange();">排班</button>
+        <a class="btn btn-default btn-success" href="#">新建选班</a>
+        <a class="btn btn-default btn-success" href="#">结束选班</a>
+        <a class="btn btn-default btn-success" onclick="arrange();" href="#">开始排班</a>
+        <a class="btn btn-default btn-success" href="#">发布排班表</a>
+        <hr>
 
-    </div><!--/.fluid-container-->
-
+    <div>
+       <table width="100%" class="table table-striped table-bordered table-hover">
+       <tr style="height: 50px;">
+         <th>当班表</th>
+         <th>星期一</th>
+         <th>星期二</th>
+         <th>星期三</th>
+         <th>星期四</th>
+         <th>星期五</th>
+         <th>星期六</th>
+         <th>星期日</th>
+       </tr>
+       <tr>
+        <th>第一班</th>
+          <?php
+                for($i=1;$i<=28;$i+=4)
+                {
+                    $sql=substr_replace($get_arrange_staff,$i,-37,-36);
+                    $re=mysqli_query($conn,$sql);
+                    $cou=substr_replace($get_staff,$i,-36,-35);
+                    $result=mysqli_query($conn,$cou);
+                    $num_results = mysqli_num_rows($result);
+                    echo "<td>";
+                    while ($row1=mysqli_fetch_assoc($re)) {
+                      echo "<li>".$row1['wname']."</li>";
+                    }
+                    echo "<br>";
+                    if($num_results>$zero)
+                   {
+                      echo $strb;
+                      while($row=mysqli_fetch_assoc($result)){
+                       echo "<li>".$row['wname']."</li>";}
+                      echo $stre;
+                   }
+                   else
+                       echo $str;
+                    echo "</td>";
+                  };
+          ?>
+       </tr>
+       <tr>
+         <th>第二班</th>
+          <?php
+                for($i=2;$i<=28;$i+=4)
+                {
+                    $sql=substr_replace($get_arrange_staff,$i,-37,-36);
+                    $re=mysqli_query($conn,$sql);
+                    $cou=substr_replace($get_staff,$i,-36,-35);
+                    $result=mysqli_query($conn,$cou);
+                    $num_results = mysqli_num_rows($result);
+                    echo "<td>";
+                    while ($row1=mysqli_fetch_assoc($re)) {
+                      echo "<li>".$row1['wname']."</li>";
+                    }
+                    echo "<br>";
+                    if($num_results>$zero)
+                   {
+                      echo $strb;
+                      while($row=mysqli_fetch_assoc($result)){
+                       echo "<li>".$row['wname']."</li>";}
+                      echo $stre;
+                   }
+                   else
+                       echo $str;
+                    echo "</td>";
+                  };
+          ?>
+    </tr>
+    <tr>
+        <th>第三班</th>
+          <?php
+                for($i=3;$i<=28;$i+=4)
+                {
+                    $sql=substr_replace($get_arrange_staff,$i,-37,-36);
+                    $re=mysqli_query($conn,$sql);
+                    $cou=substr_replace($get_staff,$i,-36,-35);
+                    $result=mysqli_query($conn,$cou);
+                    $num_results = mysqli_num_rows($result);
+                    echo "<td>";
+                    while ($row1=mysqli_fetch_assoc($re)) {
+                      echo "<li>".$row1['wname']."</li>";
+                    }
+                    echo "<br>";
+                    if($num_results>$zero)
+                   {
+                      echo $strb;
+                      while($row=mysqli_fetch_assoc($result)){
+                       echo "<li>".$row['wname']."</li>";}
+                      echo $stre;
+                   }
+                   else
+                       echo $str;
+                    echo "</td>";
+                  };
+          ?>
+    </tr>
+    <tr>
+        <th>第四班</th>
+          <?php
+                for($i=4;$i<=28;$i+=4)
+                {
+                    $sql=substr_replace($get_arrange_staff,$i,-37,-36);
+                    $re=mysqli_query($conn,$sql);
+                    $cou=substr_replace($get_staff,$i,-36,-35);
+                    $result=mysqli_query($conn,$cou);
+                    $num_results = mysqli_num_rows($result);
+                    echo "<td>";
+                    while ($row1=mysqli_fetch_assoc($re)) {
+                      echo "<li>".$row1['wname']."</li>";
+                    }
+                    echo "<br>";
+                    if($num_results>$zero)
+                   {
+                      echo $strb;
+                      while($row=mysqli_fetch_assoc($result)){
+                       echo "<li>".$row['wname']."</li>";}
+                      echo $stre;
+                   }
+                   else
+                       echo $str;
+                    echo "</td>";
+                  };
+          ?>
+      </tr>
+      </table>
+    </div>
+            
+    <hr>
+</div><!--/.fluid-container-->
+   
 </body>
 <script>
 function arrange(){

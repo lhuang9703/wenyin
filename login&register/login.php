@@ -53,7 +53,7 @@ require_once '../medoo/Medoo.php';
         <!--  下面是提交登录信息的表单  -->
             <form class="form-signin" action="login.php" method="post">
                 <h2 class="form-signin-heading">Please sign in</h2>
-                <input type="text" name="userid" class="input-block-level" > <!--placeholder="Email address">-->
+                <input type="text" name="userid" class="input-block-level" placeholder="Student Id of Fudan" > <!--placeholder="Email address">-->
                 <input type="password" name="password" class="input-block-level" placeholder="Password">
                 <label class="checkbox">
                     <input type="checkbox" value="remember-me"> Remember me
