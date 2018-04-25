@@ -11,6 +11,18 @@ if(isset($_SESSION["id"])){
 }else
 echo "<script language=javascript>alert('请先登录！');location.href='../login&register/login.php';</script>";
 
+use Medoo\Medoo;
+$database = new Medoo([
+  'database_type' => 'mysql',
+  'database_name' => $DBNAME,
+  'server' =>  $DBHOST,
+  'username' => $DBUSER,
+  'password' => $DBPWD,
+]);
+
+$data= $database->select('flags', "flag_value", ['flag_name'=> 'allow_shift' ]  );
+
+$allow_shift=$data[0];
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,9 +58,6 @@ echo "<script language=javascript>alert('请先登录！');location.href='../log
             <p>请在13月25点之前完成填班工作</p>
             <!-- <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p> -->
           </div> 
-       
-
-
 		  <!-- 填班的表格 -->
 		  <!-- 如果复选框搞不定，可以换成下拉表格 -->
 		<form id="tf">
@@ -124,15 +133,15 @@ echo "<script language=javascript>alert('请先登录！');location.href='../log
 </body>
 
 <script>
+		$( document ).ready(function() {
+			var flag= "<?php echo $allow_shift;?>";
+			if(flag=="0"){
+				$("#tf").hide();
+			}
+		});
 //提交表单文件的函数
         function upload(){
             var form = new FormData(document.getElementById("tf"));
-			var id="<?php echo $_SESSION["id"]; ?>";
-			var password="<?php echo $_SESSION["password"]; ?>";
-
-			form.append("id", id);
-			form.append("password", password);
-
             $.ajax({
                 url:"get_shift.php",
                 type:"post",

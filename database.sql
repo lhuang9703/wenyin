@@ -43,7 +43,8 @@ Foreign key(sno)references shift(sno)
 insert into select_shift(wno,sno)  values('1235',1),('1235',2);
 
 
-insert into select_shift(wno,sno)  values('15307130140',1),
+insert into select_shift(wno,sno)  values
+('15307130140',1),
 ('15307130140',10),
 ('15307130140',15),
 ('15307130140',28),
@@ -60,7 +61,6 @@ insert into select_shift(wno,sno)  values('15307130140',1),
 ('15301030007',25),
 ('15301030007',24),
 ('15301030007',23),
-('15301030007',22),
 ('15301030007',16),
 ('15307130387',7),
 ('15307130387',5),
@@ -74,8 +74,7 @@ insert into select_shift(wno,sno)  values('15307130140',1),
 ('15307080047',17),
 ('15307080047',15),
 ('15307080047',1),
-('15307080047',27),
-;
+('15307080047',27);
 
 
 -- 排好班的信息；
@@ -104,6 +103,13 @@ sno int not null,  -- 从 1 到 28
 snum int not null, -- 需要的当班人数
 stime int not null,-- 当班的时间
 Primary key(sno)
+)DEFAULT CHARSET=utf8;
+
+-- 标志位
+create table flags(
+flag_name varchar(11) not null,
+flag_value int not null,
+Primary key(flag_name)
 )DEFAULT CHARSET=utf8;
 
 insert into shift(sno,snum,stime)  values

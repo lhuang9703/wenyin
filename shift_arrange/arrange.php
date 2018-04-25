@@ -49,12 +49,11 @@ $begin = 1;
       </script>
 
     <div class="span9">
-        <a class="btn btn-default btn-success" href="#">新建选班</a>
-        <a class="btn btn-default btn-success" href="#">结束选班</a>
-        <a class="btn btn-default btn-success" onclick="arrange();" href="#">开始排班</a>
-        <a class="btn btn-default btn-success" href="#">发布排班表</a>
+        <button  class="btn btn-default" onclick="new_select();" >初始化排班 </button>
+        <!-- <button class="btn btn-default" onclick="stop_select();">结束选班</button> -->
+        <button class="btn btn-default" onclick="arrange();" href="#">开始排班</button>
+        <button a class="btn btn-default"  onclick="release();" href="#" >发布排班表</button>
         <hr>
-
     <div>
        <table width="100%" class="table table-striped table-bordered table-hover">
        <tr style="height: 50px;">
@@ -187,22 +186,78 @@ $begin = 1;
    
 </body>
 <script>
+//排班
 function arrange(){
-        $.ajax({
-                url:"./arrange_shift.php",
-                type:"post",
-                data:{},
-                processData:false,
-                contentType:false,
-                success:function(data){
-                    console.log("over..");
-					          alert("排班成功！");
-                },
-                error:function(e){
-                    alert("排班失败！");
-                }
-            });
-  // window.location.href="arrange_shift.php";
+  if(window.confirm("注意，此操作不可逆！")){
+    ;
+  }else return; //若用户取消，则函数返回，不执行操作
+
+    $.ajax({
+            url:"./arrange_shift.php",
+            type:"post",
+            data:{},
+            processData:false,
+            contentType:false,
+            success:function(data){
+                console.log("over..");
+                alert("排班成功！");
+            },
+            error:function(e){
+                alert("排班失败！");
+            }
+        });
+}
+//发布当班表
+function release(){
+  if(window.confirm("注意，此操作不可逆！")){
+    ;
+  }else return; //若用户取消，则函数返回，不执行操作
+    
+    $.ajax({
+            url:"./release_result.php",
+            type:"post",
+            data:{},
+            processData:false,
+            contentType:false,
+            success:function(data){
+                console.log("over..");
+                alert("发布成功！");
+            },
+            error:function(e){
+                alert("发布失败！");
+            }
+        });
+}
+
+//新建选班
+function new_select(){
+  if(window.confirm("注意，此操作不可逆！")){
+    ;
+  }else return; //若用户取消，则函数返回，不执行操作
+
+    $.ajax({
+            url:"./new_select.php",
+            type:"post",
+            data:{},
+            processData:false,
+            contentType:false,
+            success:function(data){
+                console.log("over..");
+                alert("选班已初始化……");
+            },
+            error:function(e){
+                alert("初始化失败！");
+            }
+        });
+}
+
+
+function CommandConfirm(){
+ if(window.confirm("注意，此操作不可逆！")){
+   return true;
+ }else{
+   return false;
+ }
 }
 </script>
 

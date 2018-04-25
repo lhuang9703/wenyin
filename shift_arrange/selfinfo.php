@@ -106,7 +106,6 @@ if(count($data,0)>0){
                 <td id="wsex">
                 </td>
             </tr>
-
             <tr>
               <th>电话:</th>
                 <td id="wphone">
@@ -120,13 +119,14 @@ if(count($data,0)>0){
         <button id="change_button">更改密码</button>
 
         <fieldset>
-          <form  id="change_form" action="scode_sure.php" method="post">
-            请先输入您原密码验证身份：</br><input type="password" name="pw_su"/></br></br>
-            <input type="submit" name="subm" class="login_button" value="提交" /></button> &nbsp &nbsp
-            <input type="reset" id="reset" value="取消">
+          <form  id="change_form" action="change_password.php" method="post">
+            请输入原密码: </br><input type="password" id="pass0" name="origin_password"/></br>
+            请输入新密码: </br><input type="password" id="pass1" name="new_password"/></br>
+            请确认新密码: </br><input type="password" id="pass2" name="confirm_password"/></br>
+            <input type="button" value="提交"  id="submit_change" onclick="upload_change()"/> &nbsp &nbsp
+            <input type="reset"  value="取消">
           </form>
         </fieldset>
-
     <!-- </fieldset> -->
       </div>
       <hr>
@@ -152,15 +152,48 @@ if(count($data,0)>0){
     $("#change_form").hide();
   });
 
+
   $("#change_button").click(function(){
     if($("#change_form").is(":hidden")){  
-      
+      $("#change_button").text("取消更改");
       $("#change_form").show();
     } 
     else {
+      $("#change_button").text("更改密码");
       $("#change_form").hide();
     }
   });
+
+  function upload_change(){
+    var form = new FormData(document.getElementById("change_form"));
+    
+    var pass1=document.getElementById("pass1").value;
+    var pass2=document.getElementById("pass2").value;
+
+    if(pass1!=pass2){
+      alert("两次输入密码不一致！");
+      return;
+    }
+
+    $.ajax({
+        url:"change_password.php",
+        type:"post",
+        data: form,
+        processData:false,
+        contentType:false,
+        success:function(data){
+            console.log("over..");
+            alert(data);
+            $("#change_form").hide();
+            $("#pass0").text("");
+            $("#pass1").text("");
+            $("#pass2").text("");
+        },
+        error:function(e){
+            alert("修改密码失败！");
+        }
+    });	
+  }
 
 </script>
 </html>
