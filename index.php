@@ -10,7 +10,7 @@ require_once("../db_pj_sys_conf.inc");
 	<title>文印管理系统</title
   <?php include './format/head.php'; ?>
 	<style>
-	  body {
+<!-- 	  body {
         padding-top: 60px;
         padding-bottom: 40px;
       }
@@ -41,7 +41,7 @@ require_once("../db_pj_sys_conf.inc");
     }
     .marketing p + h4 {
       margin-top: 28px;
-    }
+    } -->
 	</style>
 </head>
 <body>
@@ -51,11 +51,12 @@ require_once("../db_pj_sys_conf.inc");
 		p.setAttribute('class', 'active'); 
 	</script>
 
-<?php
+<!-- <?php
 	echo date("Y-m-d")."&nbsp;&nbsp;";
 	echo date("l");
-?>
-   <hr>
+?> -->
+
+<!--    <hr> -->
    <div class="container-narrow">
 		<div class="jumbotron">
 				<h1>欢迎来到文印家家</h1>

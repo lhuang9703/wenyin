@@ -80,13 +80,23 @@ require_once '../medoo/Medoo.php';
     if(isset($_POST['userid'])){
         $id=   $_POST['userid'];
         $password = $_POST['password'];
-        $pass= $database->select("wstaff", "wpassword", [
+        $pass=array();
+
+        $pass= $database->select("wstaff", ["wpassword","wprivilege"],[
             "wno" => $id
         ]);
-        
-        if(count($pass, 0)==1 && $pass[0]==$password){
-            $_SESSION["id"]=$id;
-            $_SESSION["password"]=$password;
+    //"wprivilege" ,
+        $password=hash('sha256', $password);    //求密码的哈希值
+        // echo $id . "\n";
+        // echo $password ."<hr>" ;
+        // echo $pass[0]."<hr>";
+        // echo $pass[1]. "<hr>";
+        // echo count($pass,0). "<hr>";
+
+        if(count($pass,0) ==1 && $pass[0]["wpassword"] == $password){
+            $_SESSION["id"]= $id;
+            $_SESSION["password"]= $password;
+            $_SESSION["privilege"]= $pass[0]["wprivilege"];
             echo "<script language=javascript>alert('登录成功！');location.href='../index.php';</script>";
         }else{
             echo "<script language=javascript>alert('账号或密码错误！');</script>" ;

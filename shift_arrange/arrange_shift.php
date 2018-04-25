@@ -30,7 +30,7 @@
 		}
     }
 
-    $file=fopen("info.txt","w") or exit("Unable to open file!");
+    $file=fopen("../../info.txt","w") or exit("Unable to open file!");
     foreach ($select_map as $key=>&$value){
         fwrite($file,$key." ");
         foreach($value as $v){
@@ -38,24 +38,13 @@
         }
         fwrite($file, "\n");
     }
-    //读取选班信息，放到json文件中；
-    // $json_t = json_encode($select_map);
-   
-    // fwrite($file, $json_t);
-    fclose($file);
-    //调用排班代码
 
-/* 下面备注的代码是调用选班代码的模板*/
-    // $args="Hello world";  
-    // if($args == "")  
-    // echo "<h1>You didn't enter any arguments.</h1>";  
-    // else  
-    // {  
-    // echo "<h1>SampleApp Result</h1>";  
-    $command = "./arrange";// . escapeshellcmd($args);  
-    ///var/www/test/hello 是c++编译生成的hello 的路径  
+    fclose($file);
+    
+    //调用排班代码
+    $command = "../../arrange";
     passthru($command);  
-    //}
+
     $database = new Medoo([
         'database_type' => 'mysql',
         'database_name' => $DBNAME,
@@ -63,8 +52,9 @@
         'username' => $DBUSER,
         'password' => $DBPWD,
     ]);
+    sleep(1);
 
-    $file=fopen("result.txt","r") or exit("Unable to open file!");
+    $file=fopen("../../result.txt","r") or exit("Unable to open file!");
     while(!feof($file)) {
         $line=fgets($file);
         $arr= explode(" ", $line);

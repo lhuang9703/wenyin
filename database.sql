@@ -17,14 +17,18 @@ Primary key(time_local)
 
 CREATE TABLE wstaff(
 wno varchar(11) not null,
-wpassword varchar(20) not null,
+wpassword char(64) not null,
 wname varchar(100) not null,
-wprivilege int not null,  -- 特权：管理员0，中高层：1， 员工：2
+wprivilege int not null,  -- 特权：管理员0，中高层：1 员工：2  仅保留编制：3
 wphone char(20),
 wbirthday datetime,
 wsex char(1),
 Primary key(wno)
 )DEFAULT CHARSET=utf8;
+
+update wstaff set wprivilege=3 where wno="16301170040" or wno="16210680102";
+update wstaff set wprivilege=0 where wno="15307130140" or wno="15307110328" or wno="15307080061";
+##表中权限0-2的最多有45个人；
 
 insert into wstaff(wno,wpassword,wname,wprivilege)  values('1234','1234','vampire', 0);
 insert into wstaff(wno,wpassword,wname,wprivilege)  values('1235','1235','vampire', 2);

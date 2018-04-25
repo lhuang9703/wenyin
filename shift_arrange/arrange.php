@@ -51,7 +51,7 @@ require_once '../medoo/Medoo.php';
 <script>
 function arrange(){
         $.ajax({
-                url:"arrange_shift.php",
+                url:"./arrange_shift.php",
                 type:"post",
                 data:{},
                 processData:false,

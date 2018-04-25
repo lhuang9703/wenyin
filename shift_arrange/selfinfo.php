@@ -42,11 +42,6 @@ require_once '../medoo/Medoo.php';
        
 
       <hr>
-
-      <footer>
-        <p>&copy; wjp 2018</p>
-      </footer>
-
     </div><!--/.fluid-container-->
 
 </body>
