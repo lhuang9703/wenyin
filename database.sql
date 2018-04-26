@@ -26,9 +26,6 @@ wsex char(1),    -- 需要修改，改成int，考虑第三性别
 Primary key(wno)
 )DEFAULT CHARSET=utf8;
 
-update wstaff set wprivilege=3 where wno="16301170040" or wno="16210680102";
-update wstaff set wprivilege=0 where wno="15307130140" or wno="15307110328" or wno="15307080061";
-##表中权限0-2的最多有45个人；
 
 insert into wstaff(wno,wpassword,wname,wprivilege)  values('1234','1234','vampire', 0);
 insert into wstaff(wno,wpassword,wname,wprivilege)  values('1235','1235','vampire', 2);
