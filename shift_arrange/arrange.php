@@ -71,7 +71,7 @@ $stre = '</ul></div>';
 #sql语句
 #每班选班的员工
 
-$get_staff_1 = "SELECT wstaff.wname from wstaff,select_shift,arrange_shift where select_shift.sno =";
+$get_staff_1 = "SELECT wstaff.wname from wstaff,select_shift where select_shift.sno =";
 $get_staff_2=" and wstaff.wno = select_shift.wno;";
 #每班安排的员工
 $get_arrange_staff_1 = "select wstaff.wname from wstaff,arrange_shift where arrange_shift.sno = ";

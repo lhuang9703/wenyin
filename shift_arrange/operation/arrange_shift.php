@@ -38,7 +38,7 @@
 		}
     }
 
-    $file=fopen("../../info.txt","w") or exit("Unable to open file!");
+    $file=fopen("../../../info.txt","w") or exit("Unable to open file!");
     foreach ($select_map as $key=>&$value){
         fwrite($file,$key." ");
         foreach($value as $v){
@@ -50,7 +50,7 @@
     fclose($file);
     
     //调用排班代码
-    $command = "../../arrange";
+    $command = "../../../arrange";
     passthru($command);  
 
     $database = new Medoo([
@@ -66,7 +66,7 @@
     //先把原来排班信息删掉
     $database->query("DELETE from arrange_shift;"); 
 
-    $file=fopen("../../result.txt","r") or exit("Unable to open file!");
+    $file=fopen("../../../result.txt","r") or exit("Unable to open file!");
     while(!feof($file)) {
         $line=fgets($file);
         $arr= explode(" ", $line);

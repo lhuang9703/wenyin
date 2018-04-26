@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 } 
 
 //将选班结果发布, 输出到"result_table.php"文件中
-$file=fopen("./result_table.php","w") or exit("Unable to open file!");
+$file=fopen("result_table.php","w") or exit("Unable to open file!");
 
 //黄力写的奇葩sql语句
 $get_arrange_staff_1= "SELECT wstaff.wname from wstaff, arrange_shift  where arrange_shift.sno = ";

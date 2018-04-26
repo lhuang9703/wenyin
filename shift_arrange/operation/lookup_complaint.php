@@ -1,7 +1,7 @@
 <?php 
 	session_start();
 	header("Content-type: text/html; charset=utf-8");
-	require_once("../../db_pj_sys_conf.inc");
+	require_once("../../../db_pj_sys_conf.inc");
 
 	echo "<table>
 			<thead>
@@ -41,7 +41,6 @@
 	else {
 		echo "记录为空";
 	}
-	
 
 	echo "</tbody>
 		  </table>";

@@ -42,6 +42,7 @@ echo "<script language=javascript>alert('请先登录！');location.href='../log
       </script>
 
 		<input type="button" value="查看投诉信息" onclick="lookup();"/>
+        <div id="show"> </div>
 
 
 <!-- //管理员工信息：
@@ -59,12 +60,13 @@ echo "<script language=javascript>alert('请先登录！');location.href='../log
 		$.ajax({
                 url:"operation/lookup_complaint.php",
                 type:"post",
-                data:form,
+                data:{},
                 processData:false,
                 contentType:false,
                 success:function(data){
                     console.log("over..");
-					alert("提交成功！");
+                    // $("#show").text(data);
+                    document.getElementById("show").innerHTML=data;    
                 },
                 error:function(e){
                     alert("提交失败！");
