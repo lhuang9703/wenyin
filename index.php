@@ -10,7 +10,7 @@ require_once("../db_pj_sys_conf.inc");
 	<title>文印家家</title
   <?php include './format/head.php'; ?>
 	<style>
-<!-- 	  body {
+	  body {
         padding-top: 60px;
         padding-bottom: 40px;
       }
@@ -41,7 +41,7 @@ require_once("../db_pj_sys_conf.inc");
     }
     .marketing p + h4 {
       margin-top: 28px;
-    } -->
+    }
 	</style>
 </head>
 <body>

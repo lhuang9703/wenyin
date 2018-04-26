@@ -19,7 +19,7 @@ echo "<script language=javascript>alert('请先登录！');location.href='../log
 	<?php include '../format/head.php'; ?>
 	<style>
 			body {
-			  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+			  padding-top: 80px; /* 60px to make the container go all the way to the bottom of the topbar */
 			}
 	</style>
 
@@ -58,7 +58,7 @@ echo "<script language=javascript>alert('请先登录！');location.href='../log
        <th>星期六</th>
        <th>星期日</th>
      </tr>
-   <?php require_once 'result_table.php'; ?>
+   <?php require_once 'operation/result_table.php'; ?>
    </table>
 </div> 
    <hr>

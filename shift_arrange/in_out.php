@@ -18,7 +18,7 @@ echo "<script language=javascript>alert('请先登录！');location.href='../log
 	<?php include '../format/head.php'; ?>
 	<style>
 			body {
-			  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+			  padding-top: 80px; /* 60px to make the container go all the way to the bottom of the topbar */
 			}
 	</style>
 

@@ -21,7 +21,6 @@ $database = new Medoo([
 ]);
 
 $data= $database->select('flags', "flag_value", ['flag_name'=> 'allow_shift' ]  );
-
 $allow_shift=$data[0];
 ?>
 <!DOCTYPE html>
@@ -31,7 +30,7 @@ $allow_shift=$data[0];
 	<?php include '../format/head.php'; ?>
 	<style>
 			body {
-			  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+			  padding-top: 80px; /* 60px to make the container go all the way to the bottom of the topbar */
 			}
 	</style>
 
@@ -54,8 +53,8 @@ $allow_shift=$data[0];
 
         <div class="span9">
           <div class="hero-unit">
-            <h1>Hello, world!</h1>
-            <p>请在13月25点之前完成填班工作</p>
+            <h1 id="hello">Hello, world!</h1>
+            <p id="msg">请在13月25点之前完成填班工作</p>
             <!-- <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p> -->
           </div> 
 		  <!-- 填班的表格 -->
@@ -135,15 +134,21 @@ $allow_shift=$data[0];
 <script>
 		$( document ).ready(function() {
 			var flag= "<?php echo $allow_shift;?>";
+			var wname= "<?php echo $_SESSION['wname'];?>";
+			$("#hello").text("Hello, "+wname);
 			if(flag=="0"){
 				$("#tf").hide();
+				$("#msg").text("暂未开放选班~~");
+			}
+			else{
+				$("#msg").text("请在周六晚10点前完成选班~~");
 			}
 		});
 //提交表单文件的函数
         function upload(){
             var form = new FormData(document.getElementById("tf"));
             $.ajax({
-                url:"get_shift.php",
+                url:"operation/get_shift.php",
                 type:"post",
                 data:form,
                 processData:false,

@@ -1,8 +1,10 @@
-<div class="container">
-	<h1 class="text-center" >学生文印中心投诉窗口</h1>
-	<div  v-if="showdate" id='time1'></b>time</b></div>
+<div class="container-narrow">
+	<div class="jumbotron">
+	<h1 >投诉窗口</h1>
+	<p  v-if="showdate" id='time1'></b>time</b></p>
+	</div>
 	<br>
-	<hr>
+	<!-- <hr> -->
 <div id="app">
 		<div class="table-responsive">
 		<table>

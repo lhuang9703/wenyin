@@ -3,6 +3,7 @@
     header("Content-type: text/html; charset=utf-8");
     require_once("../../db_pj_sys_conf.inc");
     require_once '../medoo/Medoo.php';
+    $_SESSION["commit_time"] =0;
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,21 @@
         padding-top: 60px;
         padding-bottom: 40px;
       }
+      .container-narrow {
+      margin: 0 auto;
+      max-width: 700px;
+    }
+    .container-narrow > hr {
+      margin: 30px 0;
+    }
+    .jumbotron {
+      margin: 60px 0;
+      text-align: center;
+    }
+    .jumbotron h1 {
+      font-size: 72px;
+      line-height: 1;
+    }
     </style>
 
 </head>
@@ -61,7 +77,7 @@
                         url: url,
                         data : params,
                         success: function(msg) {
-                            alert(msg+"您的反馈我们已经收到！感谢您的支持~~")
+                            alert(msg)
                     }
                 });
                 return false;

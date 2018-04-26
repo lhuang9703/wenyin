@@ -10,16 +10,6 @@ if(isset($_SESSION["id"])){
 }else
 echo "<script language=javascript>alert('请先登录！');location.href='../login&register/login.php';</script>";
 
-$conn=mysqli_connect($DBHOST,$DBUSER,$DBPWD,$DBNAME);
-  //mysqli_select_db($conn,$DBNAME);
-$strb = '<div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  选班人员 <span class="caret"></span></button><ul class="dropdown-menu">';
-$stre = '</ul></div>';
-$get_staff = "select wstaff.wname from wstaff,select_shift where select_shift.sno = s and wstaff.wno = select_shift.wno;";
-$get_arrange_staff = "select wstaff.wname from wstaff,arrange_shift where arrange_shift.sno = s and wstaff.wno = arrange_shift.wno;";
-$zero = 0;
-$str = "暂无人选该班";
-$begin = 1;
 
 ?>
 <!DOCTYPE html>
@@ -29,7 +19,7 @@ $begin = 1;
 	<?php include '../format/head.php'; ?>
 	<style>
 			body {
-			  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+			  padding-top: 80px; /* 60px to make the container go all the way to the bottom of the topbar */
 			}
 	</style>
 </head>
@@ -66,121 +56,136 @@ $begin = 1;
          <th>星期六</th>
          <th>星期日</th>
        </tr>
-       <tr>
-        <th>第一班</th>
-          <?php
-                for($i=1;$i<=28;$i+=4)
+
+<?php
+
+#连接数据库
+
+$conn=mysqli_connect($DBHOST,$DBUSER,$DBPWD,$DBNAME);
+
+#预定义一些样式
+$strb = '<div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  选班人员 <span class="caret"></span></button><ul class="dropdown-menu">';
+$stre = '</ul></div>';
+
+#sql语句
+#每班选班的员工
+
+$get_staff_1 = "SELECT wstaff.wname from wstaff,select_shift,arrange_shift where select_shift.sno =";
+$get_staff_2=" and wstaff.wno = select_shift.wno;";
+#每班安排的员工
+$get_arrange_staff_1 = "select wstaff.wname from wstaff,arrange_shift where arrange_shift.sno = ";
+$get_arrange_staff_2=" and wstaff.wno = arrange_shift.wno;";
+
+$zero = 0;
+$str = "";
+$begin = 1;
+
+//php 输出表格
+  echo "<tr><th>第一班</th>";
+      for($i=1;$i<=28;$i+=4)
+      {
+          $sql=$get_arrange_staff_1. $i . $get_arrange_staff_2;
+          $re=mysqli_query($conn,$sql);
+          $cou=$get_staff_1. $i . $get_staff_2;
+          $result=mysqli_query($conn,$cou);
+          $num_results = mysqli_num_rows($result);
+          echo "<td>";
+          while ($row1=mysqli_fetch_assoc($re)) {
+            echo "<li>".$row1['wname']."</li>";
+          }
+          echo "<br>";
+          if($num_results>$zero)
+          {
+            echo $strb;
+            while($row=mysqli_fetch_assoc($result)){
+              echo "<li>".$row['wname']."</li>";}
+            echo $stre;
+          }
+          else
+              echo $str;
+          echo "</td>";
+        };
+
+  echo "</tr><tr><th>第二班</th>";
+    for($i=2;$i<=28;$i+=4)
+            {
+                $sql=$get_arrange_staff_1. $i . $get_arrange_staff_2;
+                $re=mysqli_query($conn,$sql);
+                $cou=$get_staff_1. $i . $get_staff_2;
+                $result=mysqli_query($conn,$cou);
+                $num_results = mysqli_num_rows($result);
+                echo "<td>";
+                while ($row1=mysqli_fetch_assoc($re)) {
+                  echo "<li>".$row1['wname']."</li>";
+                }
+                echo "<br>";
+                if($num_results>$zero)
                 {
-                    $sql=substr_replace($get_arrange_staff,$i,-37,-36);
-                    $re=mysqli_query($conn,$sql);
-                    $cou=substr_replace($get_staff,$i,-36,-35);
-                    $result=mysqli_query($conn,$cou);
-                    $num_results = mysqli_num_rows($result);
-                    echo "<td>";
-                    while ($row1=mysqli_fetch_assoc($re)) {
-                      echo "<li>".$row1['wname']."</li>";
-                    }
-                    echo "<br>";
-                    if($num_results>$zero)
-                   {
-                      echo $strb;
-                      while($row=mysqli_fetch_assoc($result)){
-                       echo "<li>".$row['wname']."</li>";}
-                      echo $stre;
-                   }
-                   else
-                       echo $str;
-                    echo "</td>";
-                  };
-          ?>
-       </tr>
-       <tr>
-         <th>第二班</th>
-          <?php
-                for($i=2;$i<=28;$i+=4)
-                {
-                    $sql=substr_replace($get_arrange_staff,$i,-37,-36);
-                    $re=mysqli_query($conn,$sql);
-                    $cou=substr_replace($get_staff,$i,-36,-35);
-                    $result=mysqli_query($conn,$cou);
-                    $num_results = mysqli_num_rows($result);
-                    echo "<td>";
-                    while ($row1=mysqli_fetch_assoc($re)) {
-                      echo "<li>".$row1['wname']."</li>";
-                    }
-                    echo "<br>";
-                    if($num_results>$zero)
-                   {
-                      echo $strb;
-                      while($row=mysqli_fetch_assoc($result)){
-                       echo "<li>".$row['wname']."</li>";}
-                      echo $stre;
-                   }
-                   else
-                       echo $str;
-                    echo "</td>";
-                  };
-          ?>
-    </tr>
-    <tr>
-        <th>第三班</th>
-          <?php
-                for($i=3;$i<=28;$i+=4)
-                {
-                    $sql=substr_replace($get_arrange_staff,$i,-37,-36);
-                    $re=mysqli_query($conn,$sql);
-                    $cou=substr_replace($get_staff,$i,-36,-35);
-                    $result=mysqli_query($conn,$cou);
-                    $num_results = mysqli_num_rows($result);
-                    echo "<td>";
-                    while ($row1=mysqli_fetch_assoc($re)) {
-                      echo "<li>".$row1['wname']."</li>";
-                    }
-                    echo "<br>";
-                    if($num_results>$zero)
-                   {
-                      echo $strb;
-                      while($row=mysqli_fetch_assoc($result)){
-                       echo "<li>".$row['wname']."</li>";}
-                      echo $stre;
-                   }
-                   else
-                       echo $str;
-                    echo "</td>";
-                  };
-          ?>
-    </tr>
-    <tr>
-        <th>第四班</th>
-          <?php
-                for($i=4;$i<=28;$i+=4)
-                {
-                    $sql=substr_replace($get_arrange_staff,$i,-37,-36);
-                    $re=mysqli_query($conn,$sql);
-                    $cou=substr_replace($get_staff,$i,-36,-35);
-                    $result=mysqli_query($conn,$cou);
-                    $num_results = mysqli_num_rows($result);
-                    echo "<td>";
-                    while ($row1=mysqli_fetch_assoc($re)) {
-                      echo "<li>".$row1['wname']."</li>";
-                    }
-                    echo "<br>";
-                    if($num_results>$zero)
-                   {
-                      echo $strb;
-                      while($row=mysqli_fetch_assoc($result)){
-                       echo "<li>".$row['wname']."</li>";}
-                      echo $stre;
-                   }
-                   else
-                       echo $str;
-                    echo "</td>";
-                  };
-          ?>
-      </tr>
-      </table>
-    </div>
-            
+                  echo $strb;
+                  while($row=mysqli_fetch_assoc($result)){
+                    echo "<li>".$row['wname']."</li>";}
+                  echo $stre;
+                }
+                else
+                    echo $str;
+                echo "</td>";
+              };
+
+  echo "</tr><tr><th>第三班</th>";
+        for($i=3;$i<=28;$i+=4)
+        {
+            $sql=$get_arrange_staff_1. $i . $get_arrange_staff_2;
+            $re=mysqli_query($conn,$sql);
+            $cou=$get_staff_1. $i . $get_staff_2;
+            $result=mysqli_query($conn,$cou);
+            $num_results = mysqli_num_rows($result);
+            echo "<td>";
+            while ($row1=mysqli_fetch_assoc($re)) {
+              echo "<li>".$row1['wname']."</li>";
+            }
+            echo "<br>";
+            if($num_results>$zero)
+            {
+              echo $strb;
+              while($row=mysqli_fetch_assoc($result)){
+                echo "<li>".$row['wname']."</li>";}
+              echo $stre;
+            }
+            else
+                echo $str;
+            echo "</td>";
+          };
+
+  echo "</tr><tr><th>第四班</th>";
+        for($i=4;$i<=28;$i+=4)
+        {
+            $sql=$get_arrange_staff_1. $i . $get_arrange_staff_2;
+            $re=mysqli_query($conn,$sql);
+            $cou=$get_staff_1. $i . $get_staff_2;
+            $result=mysqli_query($conn,$cou);
+            $num_results = mysqli_num_rows($result);
+            echo "<td>";
+            while ($row1=mysqli_fetch_assoc($re)) {
+              echo "<li>".$row1['wname']."</li>";
+            }
+            echo "<br>";
+            if($num_results>$zero)
+            {
+              echo $strb;
+              while($row=mysqli_fetch_assoc($result)){
+                echo "<li>".$row['wname']."</li>";}
+              echo $stre;
+            }
+            else
+                echo $str;
+            echo "</td>";
+          };
+
+echo "</tr>";
+?>
+    </table>
+    </div>      
     <hr>
 </div><!--/.fluid-container-->
    
@@ -188,12 +193,8 @@ $begin = 1;
 <script>
 //排班
 function arrange(){
-  if(window.confirm("注意，此操作不可逆！")){
-    ;
-  }else return; //若用户取消，则函数返回，不执行操作
-
     $.ajax({
-            url:"./arrange_shift.php",
+            url:"./operation/arrange_shift.php",
             type:"post",
             data:{},
             processData:false,
@@ -209,12 +210,12 @@ function arrange(){
 }
 //发布当班表
 function release(){
-  if(window.confirm("注意，此操作不可逆！")){
+  if(window.confirm("注意，此操作会清空原来的排班表!")){
     ;
   }else return; //若用户取消，则函数返回，不执行操作
     
     $.ajax({
-            url:"./release_result.php",
+            url:"./operation/release_result.php",
             type:"post",
             data:{},
             processData:false,
@@ -231,33 +232,24 @@ function release(){
 
 //新建选班
 function new_select(){
-  if(window.confirm("注意，此操作不可逆！")){
+  if(window.confirm("注意，此操作会清空上次选班的信息!")){
     ;
   }else return; //若用户取消，则函数返回，不执行操作
 
     $.ajax({
-            url:"./new_select.php",
+            url:"./operation/new_select.php",
             type:"post",
             data:{},
             processData:false,
             contentType:false,
             success:function(data){
                 console.log("over..");
-                alert("选班已初始化……");
+                alert("选班已经重新开放………");
             },
             error:function(e){
                 alert("初始化失败！");
             }
         });
-}
-
-
-function CommandConfirm(){
- if(window.confirm("注意，此操作不可逆！")){
-   return true;
- }else{
-   return false;
- }
 }
 </script>
 

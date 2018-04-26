@@ -1,8 +1,8 @@
 <?php
 session_start(); 
 header("Content-type: text/html; charset=utf-8");
-require_once("../../db_pj_sys_conf.inc");
-require_once '../medoo/Medoo.php';
+require_once("../../../db_pj_sys_conf.inc");
+require_once '../../medoo/Medoo.php';
 
 $conn = new mysqli($DBHOST, $DBUSER, $DBPWD , $DBNAME);
 // 检测连接
@@ -15,8 +15,8 @@ if ($conn->connect_error) {
 $file=fopen("./result_table.php","w") or exit("Unable to open file!");
 
 //黄力写的奇葩sql语句
-$get_arrange_staff_1= "SELECT wstaff.wname from wstaff, arrange_shift  where arrange_shift.sno = \"";
-$get_arrange_staff_2= "\"and wstaff.wno = arrange_shift.wno;";
+$get_arrange_staff_1= "SELECT wstaff.wname from wstaff, arrange_shift  where arrange_shift.sno = ";
+$get_arrange_staff_2= " and wstaff.wno = arrange_shift.wno;";
 
 
 //下面是输出表格

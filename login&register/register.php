@@ -10,6 +10,16 @@
                 background-color: #f5f5f5;
             }
 
+                            /* Custom container */
+            .container-narrow {
+            margin: 0 auto;
+            max-width: 700px;
+            }
+            .container-narrow > hr {
+            margin: 30px 0;
+            }
+
+
             .form-signin {
                 max-width: 300px;
                 padding: 19px 29px 29px;
@@ -43,7 +53,7 @@
             p.setAttribute('class', 'active');   
         </script>
 
-        <div class="container">
+        <div class="container-narrow">
             <form class="form-signin"  method="post">
                 <h2 class="form-signin-heading">Register</h2>
                 <input type="text" class="input-block-level" placeholder="Email address">
@@ -54,7 +64,7 @@
 
                 <input type="button" class="btn btn-large"  value="获取验证码"/>
                 <!-- onclick="location.href='get_code.php';" -->
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button class="btn btn-large btn-primary" type="submit">Submit</button>
             </form>
         </div> <!-- /container -->

@@ -16,6 +16,15 @@ require_once '../medoo/Medoo.php';
                 background-color: #f5f5f5;
             }
 
+                /* Custom container */
+            .container-narrow {
+            margin: 0 auto;
+            max-width: 700px;
+            }
+            .container-narrow > hr {
+            margin: 30px 0;
+            }
+
             .form-signin {
                 max-width: 300px;
                 padding: 19px 29px 29px;
@@ -49,7 +58,7 @@ require_once '../medoo/Medoo.php';
             var p = document.getElementById('login_page');
             p.setAttribute('class', 'active');   
     </script>
-        <div class="container">
+        <div class="container-narrow">
         <!--  下面是提交登录信息的表单  -->
             <form class="form-signin" action="login.php" method="post">
                 <h2 class="form-signin-heading">Please sign in</h2>
@@ -59,7 +68,7 @@ require_once '../medoo/Medoo.php';
                     <input type="checkbox" value="remember-me"> Remember me
                 </label>
                 <button class="btn btn-large btn-primary" type="submit">Sign in</button>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="button" class="btn btn-large " onclick="location.href='register.php';" value="Register"/>
             </form>
         </div> <!-- /container -->
@@ -82,7 +91,7 @@ require_once '../medoo/Medoo.php';
         $password = $_POST['password'];
         $pass=array();
 
-        $pass= $database->select("wstaff", ["wpassword","wprivilege"],[
+        $pass= $database->select("wstaff", ["wpassword","wprivilege","wname"],[
             "wno" => $id
         ]);
     //"wprivilege" ,
@@ -97,6 +106,7 @@ require_once '../medoo/Medoo.php';
             $_SESSION["id"]= $id;
             $_SESSION["password"]= $password;
             $_SESSION["privilege"]= $pass[0]["wprivilege"];
+            $_SESSION["wname"]= $pass[0]["wname"];
             echo "<script language=javascript>alert('登录成功！');location.href='../index.php';</script>";
         }else{
             echo "<script language=javascript>alert('账号或密码错误！');</script>" ;

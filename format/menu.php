@@ -13,7 +13,8 @@
 					<li id="select_class" ><a href="/shift_arrange/shift.php">排班系统</a></li>
 					<li id="order_print" ><a href="/Order/orders.php">预约打印</a></li>
 					<li id="compliant" ><a href="/complaint/complaint.php">顾客投诉</a></li>
-					<li id="login_page" ><a href="/login&register/login.php">登录|注册</a></li>
+					<li id="selfinfo" >  <a href="/selfinfo.php">个人信息</a></li>
+					<li id="login_page" ><a href="/login&register/login.php">登录</a></li>
 					<li> <a href="/logout.php">退出</a></li>
 					<!-- style="float:right" -->
 					</ul>

@@ -20,7 +20,7 @@ echo "<script language=javascript>alert('请先登录！');location.href='../log
 
 	<style>
 			body {
-			  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+			  padding-top: 80px; /* 60px to make the container go all the way to the bottom of the topbar */
 			}
 	</style>
 
@@ -41,6 +41,8 @@ echo "<script language=javascript>alert('请先登录！');location.href='../log
         p.setAttribute('class', 'active'); 
       </script>
 
+		<input type="button" value="查看投诉信息" onclick="lookup();"/>
+
 
 <!-- //管理员工信息：
 员工添加 批量添加，从excel文件中导入，初始密码为后四位，数据库里存储密文）
@@ -49,8 +51,26 @@ echo "<script language=javascript>alert('请先登录！');location.href='../log
 群通知
 修改主页信息 -->
       <hr>
-
     </div><!--/.fluid-container-->
 
 </body>
+<script>
+	function lookup(){
+		$.ajax({
+                url:"operation/lookup_complaint.php",
+                type:"post",
+                data:form,
+                processData:false,
+                contentType:false,
+                success:function(data){
+                    console.log("over..");
+					alert("提交成功！");
+                },
+                error:function(e){
+                    alert("提交失败！");
+                }
+            });	
+	}
+
+</script>
 </html>

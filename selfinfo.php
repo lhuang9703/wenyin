@@ -1,8 +1,8 @@
 <?php 
 session_start(); 
 header("Content-type: text/html; charset=utf-8");
-require_once("../../db_pj_sys_conf.inc");
-require_once '../medoo/Medoo.php';
+require_once("../db_pj_sys_conf.inc");
+require_once 'medoo/Medoo.php';
 
 if(isset($_SESSION["id"])){
 	if((int)($_SESSION["privilege"])>4){
@@ -51,44 +51,53 @@ if(count($data,0)>0){
   else
     $wprivilege="顾客";
 }
-
-
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>选班排班系统</title>
-	<?php include '../format/head.php'; ?>
+	<?php include 'format/head.php'; ?>
 	<style>
 			body {
 			  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
 			}
+          /* Custom container */
+    .container-narrow {
+      margin: 0 auto;
+      max-width: 700px;
+    }
+    .container-narrow > hr {
+      margin: 30px 0;
+    }
+    .jumbotron {
+      margin: 60px 0;
+      text-align: center;
+    }
+    .jumbotron h1 {
+      font-size: 72px;
+      line-height: 1;
+    }
 	</style>
 
 </head>
 <body>
-<?php include '../format/menu.php'; ?>
+<?php include 'format/menu.php'; ?>
 <script>
-  var p = document.getElementById('select_class');
+  var p = document.getElementById('selfinfo');
   p.setAttribute('class', 'active'); 
 </script>
+  <div class="container-fluid container-narrow ">
+     <div class="row-fluid">
+       <div class="span9">
 
-  <div class="container-fluid">
-    <div class="row-fluid">
-      <?php include './menu_shift.php'; ?>
-      <script>
-        var p = document.getElementById('selfinfo');
-        p.setAttribute('class', 'active'); 
-      </script>
-
-      <div class="span9">
-        <div class="hero-unit">
-          <h1>Hello, world!</h1>
-          <p>请在13月25点之前完成填班工作</p>
+        <div class="jumbotron">
+          <h1 id="hello">Hello, world!</h1>
+          <!-- <p>请在13月25点之前完成填班工作</p> -->
           <!-- <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p> -->
-        </div> 
+        <!-- </div>  -->
+        </div>
           <!-- </br><fieldset> -->
-        <legend>员工基本信息</legend>
+        <legend>个人信息</legend>
         <table width='100%'>
             <tr>
               <th>学号:</th>
@@ -119,7 +128,7 @@ if(count($data,0)>0){
         <button id="change_button">更改密码</button>
 
         <fieldset>
-          <form  id="change_form" action="change_password.php" method="post">
+          <form  id="change_form"  method="post">
             请输入原密码: </br><input type="password" id="pass0" name="origin_password"/></br>
             请输入新密码: </br><input type="password" id="pass1" name="new_password"/></br>
             请确认新密码: </br><input type="password" id="pass2" name="confirm_password"/></br>
@@ -127,11 +136,14 @@ if(count($data,0)>0){
             <input type="reset"  value="取消">
           </form>
         </fieldset>
+        <br>
+        <br>
     <!-- </fieldset> -->
       </div>
       <hr>
+      
     </div>
-  </div><!--/.fluid-container-->
+  </div>
 
 </body>
 <script>
@@ -149,6 +161,7 @@ if(count($data,0)>0){
     $("#wphone").text(wphone);
     $("#wbirthday").text(wbirthday);
     $("#wsex").text(wsex);
+    $("#hello").text("Hello, "+wname);
     $("#change_form").hide();
   });
 
@@ -176,7 +189,7 @@ if(count($data,0)>0){
     }
 
     $.ajax({
-        url:"change_password.php",
+        url:"./shift_arrange/operation/change_password.php",
         type:"post",
         data: form,
         processData:false,
@@ -184,6 +197,7 @@ if(count($data,0)>0){
         success:function(data){
             console.log("over..");
             alert(data);
+            $("#change_button").text("更改密码");
             $("#change_form").hide();
             $("#pass0").text("");
             $("#pass1").text("");
@@ -191,6 +205,9 @@ if(count($data,0)>0){
         },
         error:function(e){
             alert("修改密码失败！");
+            $("#pass0").text("");
+            $("#pass1").text("");
+            $("#pass2").text("");
         }
     });	
   }

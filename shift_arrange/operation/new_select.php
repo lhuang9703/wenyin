@@ -1,7 +1,7 @@
 <?php
 	session_start(); 
 	header("Content-type: text/html; charset=utf-8");
-	require_once("../../db_pj_sys_conf.inc");
+	require_once("../../../db_pj_sys_conf.inc");
 
 
 	if(isset($_SESSION["id"])){  //使用session作为保护
